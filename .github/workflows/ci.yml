@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    uses: VamsiPothireddy-Dev/github-actions/.github/workflows/build-deploy.yml@main
+    with:
+      app-name: ticketmaster
+      image-name: vamsipothireddy/ticketmaster
+      service-port: 8000
+      target-port: 8000
+      istio-host: api.vamsipothireddy.com
+      istio-path-prefix: /ticketmaster
+      namespace: default
+    secrets: inherit
